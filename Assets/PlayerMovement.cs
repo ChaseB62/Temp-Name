@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(leftKey)){
             rb.AddForce(transform.right * (walkSpeed * -1));
-        } else if(Input.GetKey(rightKey) && !isGrounded)
+        } else if(Input.GetKey(leftKey) && !isGrounded)
         {
             rb.AddForce(transform.right * (airWalkSpeed * -1));
         }
