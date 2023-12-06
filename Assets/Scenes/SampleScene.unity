@@ -338,7 +338,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1385386194}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8bd8af715f127db4da4f4ae8b5992a83, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -460,7 +460,7 @@ MonoBehaviour:
     m_Bits: 1
   isGrounded: 0
   groundDetector: {fileID: 84546691}
-  jumpForce: 100
+  jumpForce: 1000
   walkSpeed: 10
   airWalkSpeed: 3
   rb: {fileID: 2034173677}
