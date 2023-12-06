@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ground;
 
     public bool isGrounded;
+    public bool isMoving;
 
     public Collider2D groundDetector;
 
@@ -21,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 10f;
 
     public float airWalkSpeed = 3f;
+
+    public GameObject leftParticle;
+    public GameObject rightParticle;
+
+    public GameObject jumpParticle;
 
     public Rigidbody2D rb;
 
@@ -38,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("jamped");
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            Instantiate(jumpParticle, transform.position, transform.rotation);
         }
 
         if(Input.GetKey(rightKey) && isGrounded){
@@ -56,6 +63,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(rb.velocity.magnitude > maxSpeed){
             rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+
+        if(!Input.GetKeyDown(upKey) && !Input.GetKeyDown(leftKey) && !Input.GetKeyDown(rightKey)){
+            
         }
     }
 }
