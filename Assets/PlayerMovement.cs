@@ -15,8 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Collider2D groundDetector;
 
-    public float jumpForce = 10f;
+    public float jumpForce = 100f;
     public float walkSpeed = 10f;
+
+    public float maxSpeed = 10f;
 
     public float airWalkSpeed = 3f;
 
@@ -34,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(upKey) && isGrounded)
         {
-            rb.AddForce(transform.up * jumpForce);
+            Debug.Log("jamped");
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
 
         if(Input.GetKey(rightKey) && isGrounded){
@@ -49,6 +52,10 @@ public class PlayerMovement : MonoBehaviour
         } else if(Input.GetKey(leftKey) && !isGrounded)
         {
             rb.AddForce(transform.right * (airWalkSpeed * -1));
+        }
+
+        if(rb.velocity.magnitude > maxSpeed){
+            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
     }
 }
