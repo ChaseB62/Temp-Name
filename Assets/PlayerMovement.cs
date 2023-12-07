@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(rightKey) && isGrounded){
             rb.AddForce(transform.right * walkSpeed);
+            rightParticle.SetActive(true);
+            leftParticle.SetActive(false);
         } else if(Input.GetKey(rightKey) && !isGrounded)
         {
             rb.AddForce(transform.right * airWalkSpeed);
@@ -56,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(leftKey)){
             rb.AddForce(transform.right * (walkSpeed * -1));
+            rightParticle.SetActive(false);
+            leftParticle.SetActive(true);
         } else if(Input.GetKey(leftKey) && !isGrounded)
         {
             rb.AddForce(transform.right * (airWalkSpeed * -1));
@@ -65,8 +69,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
 
-        if(!Input.GetKeyDown(upKey) && !Input.GetKeyDown(leftKey) && !Input.GetKeyDown(rightKey)){
-            
+        if(!Input.GetKeyDown(leftKey) && !Input.GetKeyDown(rightKey)){
+            rightParticle.SetActive(false);
+            leftParticle.SetActive(false);
         }
     }
 }
