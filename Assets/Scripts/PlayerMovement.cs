@@ -25,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    private particleHandler particleHandler;
+
+    void Start(){
+        particleHandler = GetComponent<particleHandler>();
+    }
+
     void Update()
     {
         if(groundDetector.IsTouchingLayers(ground)){
@@ -38,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(upKey) && isGrounded)
         {
             Debug.Log("jamped");
+            particleHandler.Jump();
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
 
