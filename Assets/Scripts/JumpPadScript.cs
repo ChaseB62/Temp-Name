@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JumpPadScript : MonoBehaviour
 {
-    public float jumpForce = 15f;
+    public float jumpVelocity = 10f; // Adjust the velocity as needed
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,8 +12,8 @@ public class JumpPadScript : MonoBehaviour
 
             if (playerMovement != null)
             {
-                // Apply upward force to the player when they touch the jump pad
-                playerMovement.rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                // Set upward velocity to the player when they touch the jump pad
+                playerMovement.rb.velocity = new Vector2(playerMovement.rb.velocity.x, jumpVelocity);
             }
         }
     }
