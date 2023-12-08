@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7138404408630456374}
   - component: {fileID: 7138404408630456373}
   - component: {fileID: 5825342955949336730}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FanTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 4958409880153032090}
   - component: {fileID: 1236716602017729852}
   - component: {fileID: 5589292093994408054}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fanparticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
