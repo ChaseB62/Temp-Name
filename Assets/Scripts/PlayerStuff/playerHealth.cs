@@ -46,7 +46,7 @@ public class playerHealth : MonoBehaviour
         {
             goToPlayer.Zoom = 7.5f;
             goToPlayer.lerpSpeed = 10f;
-            rb.AddForce(Random.insideUnitCircle * Random.Range(deathFlingForce, deathFlingForce * 2), ForceMode2D.Impulse);
+            rb.AddForce(Random.insideUnitCircle * Random.Range(deathFlingForce, deathFlingForce + (deathFlingForce / 4)), ForceMode2D.Impulse);
             rb.AddTorque(Random.Range((deathRotateForce * -1), deathRotateForce), ForceMode2D.Impulse);
             particleHandler.Die();
         }
