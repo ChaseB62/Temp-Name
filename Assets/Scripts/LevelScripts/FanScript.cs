@@ -1,3 +1,4 @@
+//written by Aiden
 using UnityEngine;
 
 public class FanScript : MonoBehaviour
