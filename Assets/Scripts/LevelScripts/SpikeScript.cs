@@ -5,6 +5,9 @@ public class SpikeScript : MonoBehaviour
     public int spikeDamage = 10;
     public playerHealth playerHealthScript; // Reference to playerHealth script
 
+    public AudioSource hitSource;
+    public AudioClip hitClip;
+
     // Called when something enters the collider attached to this GameObject
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,6 +18,8 @@ public class SpikeScript : MonoBehaviour
             playerHealthScript = other.GetComponent<playerHealth>();
             // Reduce player's health directly
             DecreaseHealth();
+
+            hitSource.PlayOneShot(hitClip);
         }
     }
 
