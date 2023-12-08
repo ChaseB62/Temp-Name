@@ -1035,9 +1035,10 @@ MonoBehaviour:
   isMoving: 0
   groundDetector: {fileID: 4152256611795064067}
   jumpForce: 20
-  walkSpeed: 20
-  maxSpeed: 20
-  airWalkSpeed: 6
+  walkSpeed: 5
+  maxSpeed: 10
+  maxAirSpeed: 12
+  airWalkSpeed: 5
   rb: {fileID: 4152256612570409467}
 --- !u!61 &4152256613654673685
 BoxCollider2D:
@@ -1081,7 +1082,7 @@ MonoBehaviour:
   healthSlider: {fileID: 4152256612301667311}
   playerMovement: {fileID: 4152256612570409466}
   rb: {fileID: 4152256612570409467}
-  deathFlingForce: 1000
+  deathFlingForce: 100
   deathRotateForce: 10
   particleHandler: {fileID: 4152256612570409471}
   goToPlayer: {fileID: 4152256612345077457}

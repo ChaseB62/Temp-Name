@@ -40,11 +40,11 @@ public class playerHealth : MonoBehaviour
 
     public void Die()
     {
-        
+        playerMovement.enabled = false;
         rb.freezeRotation = false;
         if(isDead == false)
         {
-            goToPlayer.Zoom = 5f;
+            goToPlayer.Zoom = 7.5f;
             goToPlayer.lerpSpeed = 10f;
             rb.AddForce(Random.insideUnitCircle * Random.Range(deathFlingForce, deathFlingForce * 2), ForceMode2D.Impulse);
             rb.AddTorque(Random.Range((deathRotateForce * -1), deathRotateForce), ForceMode2D.Impulse);
@@ -54,6 +54,7 @@ public class playerHealth : MonoBehaviour
     }
 
     public void Revive(){
+        playerMovement.enabled = true;
         isDead = false;
         goToPlayer.Zoom = 10f;
         goToPlayer.lerpSpeed = 10f;

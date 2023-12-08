@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 10f;
 
     public float maxSpeed = 10f;
+    public float maxAirSpeed = 12f;
 
     public float airWalkSpeed = 3f;
 
@@ -62,8 +63,24 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(transform.right * (airWalkSpeed * -1));
         }
 
-        if(rb.velocity.magnitude > maxSpeed){
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+        if (rb.velocity.x > maxSpeed && isGrounded)
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+        } 
+        else if(rb.velocity.x > maxAirSpeed && !isGrounded)
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
         }
+
+        if (rb.velocity.x < (maxSpeed * -1) && isGrounded)
+        {
+            rb.velocity = new Vector2((maxSpeed * -1), rb.velocity.y);
+        } 
+        else if(rb.velocity.x < (maxAirSpeed * -1) && !isGrounded)
+        {
+            rb.velocity = new Vector2((maxAirSpeed * -1), rb.velocity.y);
+        }
+
+
     }
 }
