@@ -10,6 +10,8 @@ public class GunController : MonoBehaviour
     public float rotationSpeed = 5f; // Adjust this value to control rotation speed
     public float gunDistance = 1.5f; // Adjust this value to control the distance between player and gun
 
+    public playerHealth playerHealthScript;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && !hasGun)
@@ -21,9 +23,14 @@ public class GunController : MonoBehaviour
             DropGun();
         }
 
+        
+        if (playerHealthScript.health <= 0 && hasGun)
+        {
+            DropGun();
+        }
+
         if (hasGun)
         {
-            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Shoot();
