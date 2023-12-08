@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PickupManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public Transform pickupLocation;
+   public Collider2D pickupCollider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+   public KeyCode pickupKey;
+
+    public void OnTriggerStay2D(Collider2D other){
+        if(other.CompareTag("Gun") && Input.GetKeyDown(pickupKey)){
+            // other.Get
+        }
     }
+    
+    //HOW THE FUCK DO YOU DO THIS???????????????????????????? I CANT DO SHIT
 }
