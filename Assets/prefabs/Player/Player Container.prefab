@@ -1007,7 +1007,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 1
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -1025,9 +1025,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce142f8b67e02b746a5666ec1f151339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upKey: 273
-  rightKey: 275
-  leftKey: 276
+  upKey: 119
+  rightKey: 97
+  leftKey: 100
   ground:
     serializedVersion: 2
     m_Bits: 1
@@ -1035,8 +1035,8 @@ MonoBehaviour:
   isMoving: 0
   groundDetector: {fileID: 4152256611795064067}
   jumpForce: 20
-  walkSpeed: 5
-  maxSpeed: 10
+  walkSpeed: 10
+  maxSpeed: 15
   maxAirSpeed: 12
   airWalkSpeed: 5
   rb: {fileID: 4152256612570409467}
@@ -1098,6 +1098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c426d51bb66dbe4b83125b6e95521b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4152256613654673707}
+  player: {fileID: 4152256611795064066}
   jumpParticle: {fileID: 9059364847483633817, guid: c1cbdb772d38f7143af5ed040084e2a4, type: 3}
   deathParticle: {fileID: 8531105188884287404, guid: 948ec6fdcaaa8144e87d9a549a82faac, type: 3}
