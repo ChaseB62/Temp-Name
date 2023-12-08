@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//Made by Aiden
 public class JumpPadScript : MonoBehaviour
 {
     public float jumpVelocity = 10f; // Adjust the velocity as needed

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//made by Aidem
 public class SpikeScript : MonoBehaviour
 {
     public int spikeDamage = 10;
