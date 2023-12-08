@@ -744,7 +744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 4152256612570409466}
   camera: {fileID: 4152256612281662388}
-  pickupManagerScript: {fileID: 6202628039011746153}
+  pickupManagerScript: {fileID: 0}
   nickname: 
   objectsToEnable: []
   objectsToDisable: []
@@ -800,9 +800,9 @@ GameObject:
   - component: {fileID: 4152256613654673685}
   - component: {fileID: 4152256613654673684}
   - component: {fileID: 4152256612570409471}
-  - component: {fileID: 6202628039011746153}
   - component: {fileID: 7603291014203180301}
   - component: {fileID: 1761042740877088596}
+  - component: {fileID: 5358008114814968195}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -986,21 +986,6 @@ MonoBehaviour:
   player: {fileID: 4152256611795064066}
   jumpParticle: {fileID: 9059364847483633817, guid: c1cbdb772d38f7143af5ed040084e2a4, type: 3}
   deathParticle: {fileID: 8531105188884287404, guid: 948ec6fdcaaa8144e87d9a549a82faac, type: 3}
---- !u!114 &6202628039011746153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152256613654673706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a009199e4a6a35645b1d9c1077162ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupLocation: {fileID: 0}
-  pickupCollider: {fileID: 0}
-  pickupKey: 0
 --- !u!114 &7603291014203180301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,6 +1025,24 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &5358008114814968195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152256613654673706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a6609eac8398645bc7f6a30a0b0b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasGun: 0
+  gunPrefab: {fileID: 924779181465636565, guid: d3dd88c77df0a28448e9c91bbb25e8d8, type: 3}
+  pickupRange: 1.5
+  rotationSpeed: 5
+  gunDistance: 1
+  playerHealthScript: {fileID: 4152256613654673684}
 --- !u!1 &5814638808249322095
 GameObject:
   m_ObjectHideFlags: 0
