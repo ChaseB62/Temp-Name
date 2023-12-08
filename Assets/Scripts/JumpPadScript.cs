@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpPad : MonoBehaviour
+public class JumpPadScript : MonoBehaviour
 {
     public float jumpForce = 15f;
 
