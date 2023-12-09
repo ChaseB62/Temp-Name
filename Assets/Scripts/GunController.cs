@@ -1,16 +1,35 @@
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+namespace YourNamespace
 {
-    public bool hasGun = false;
-    public GameObject gunPrefab;
-    private GameObject currentGun;
-    private GameObject pickedUpGun; // To store the picked-up gun object
-    public float pickupRange = 1.5f; // Adjust this value as needed
-    public float rotationSpeed = 5f; // Adjust this value to control rotation speed
-    public float gunDistance = 1.5f; // Adjust this value to control the distance between player and gun
+    [System.Serializable]
+    public class Gun
+    {
+        public string gunName;
+        public GameObject gunPrefab;
+        public float damage = 10f;
+        // Add more properties as needed
 
+        public Gun(string name, GameObject prefab, float dmg)
+        {
+            gunName = name;
+            gunPrefab = prefab;
+            damage = dmg;
+        }
+    }
+
+    public class GunController : MonoBehaviour
+    {
+    public bool hasGun = false;
+    public float pickupRange = 1.5f;
+    public float rotationSpeed = 5f;
+    public float gunDistance = 1.5f;
     public playerHealth playerHealthScript;
+
+    public Gun[] availableGuns; // Array to store different types of guns
+
+    private GameObject currentGun;
+    private GameObject pickedUpGun;
 
     void Update()
     {
@@ -23,7 +42,6 @@ public class GunController : MonoBehaviour
             DropGun();
         }
 
-        
         if (playerHealthScript.health <= 0 && hasGun)
         {
             DropGun();
@@ -75,12 +93,17 @@ public class GunController : MonoBehaviour
             DropGun();
         }
 
+        // Randomly select a gun from availableGuns array
+        Gun selectedGun = availableGuns[Random.Range(0, availableGuns.Length)];
+
         // Instantiate the new gun prefab and set it at an offset from the player
-        currentGun = Instantiate(gunPrefab, transform.position + new Vector3(gunDistance, 0f, 0f), Quaternion.identity);
+        currentGun = Instantiate(selectedGun.gunPrefab, transform.position + new Vector3(gunDistance, 0f, 0f), Quaternion.identity);
         currentGun.transform.parent = transform;
 
         // Set the boolean variable to true
         hasGun = true;
+
+        Debug.Log("Picked up: " + selectedGun.gunName);
     }
 
     void DropGun()
@@ -88,16 +111,16 @@ public class GunController : MonoBehaviour
         if (hasGun && currentGun != null)
         {
             // Activate the gun object on the floor
-            pickedUpGun.transform.position = currentGun.transform.position; // Set position to the current gun's position
+            pickedUpGun.transform.position = currentGun.transform.position;
             pickedUpGun.SetActive(true);
 
             // Add Rigidbody component to the dropped gun
             Rigidbody2D rb = pickedUpGun.AddComponent<Rigidbody2D>();
-            rb.gravityScale = 1; // Set gravity scale to enable falling
+            rb.gravityScale = 1;
 
             // Destroy the current gun and set the boolean variable to false
             Destroy(currentGun);
-            currentGun = null; // Set currentGun to null after destroying it
+            currentGun = null;
             hasGun = false;
         }
         else
@@ -108,8 +131,9 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
-        // Implement shooting functionality here
+        // Implement shooting functionality based on the currentGun's properties
         // For example: Instantiate bullets, apply force, etc.
-        Debug.Log("Bang! Bang!");
+        Debug.Log("Bang! Bang! Damage: " + currentGun.GetComponent<Gun>().damage);
+    }
     }
 }
