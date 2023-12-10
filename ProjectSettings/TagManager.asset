@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Gun
   - PickupManager
+  - MovingBlock
+  - AssaultRifle
+  - Pistol
+  - Shotgun
+  - SMG
   layers:
   - Default
   - TransparentFX
@@ -13,8 +18,8 @@ TagManager:
   - fan
   - Water
   - UI
-  - Background
   - Gun
+  - Background
   - Player
   - 
   - 

@@ -1,139 +1,144 @@
 using UnityEngine;
 
-namespace YourNamespace
+public class GunController : MonoBehaviour
 {
-    [System.Serializable]
-    public class Gun
-    {
-        public string gunName;
-        public GameObject gunPrefab;
-        public float damage = 10f;
-        // Add more properties as needed
-
-        public Gun(string name, GameObject prefab, float dmg)
-        {
-            gunName = name;
-            gunPrefab = prefab;
-            damage = dmg;
-        }
-    }
-
-    public class GunController : MonoBehaviour
-    {
-    public bool hasGun = false;
-    public float pickupRange = 1.5f;
-    public float rotationSpeed = 5f;
-    public float gunDistance = 1.5f;
-    public playerHealth playerHealthScript;
-
-    public Gun[] availableGuns; // Array to store different types of guns
-
+    public Transform playerHand;
+    public GameObject gunHolder;
+    public LayerMask gunLayer;
     private GameObject currentGun;
-    private GameObject pickedUpGun;
+    private GameObject originalGunOnGround;
+    private Rigidbody2D originalRigidbody; // Store the original Rigidbody2D
+    public float pickupRadius = 2f;
+    private bool isHoldingGun = false;
+    private string lastPickedGunType = ""; // Store the type of the last picked up gun
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !hasGun)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            TryPickUpGun();
-        }
-        else if (Input.GetKeyDown(KeyCode.E) && hasGun)
-        {
-            DropGun();
-        }
-
-        if (playerHealthScript.health <= 0 && hasGun)
-        {
-            DropGun();
-        }
-
-        if (hasGun)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!isHoldingGun)
             {
-                Shoot();
+                PickUpGun();
+            }
+            else
+            {
+                DropGun();
             }
         }
     }
 
-    void TryPickUpGun()
+    void PickUpGun()
     {
-        // Check if there's a gun within pickupRange
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, pickupRange);
-
-        foreach (var collider in colliders)
+        if (isHoldingGun)
         {
-            if (collider.gameObject.CompareTag("Gun"))
+            Debug.Log("Cannot pick up another gun while already holding one.");
+            return;
+        }
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerHand.position, pickupRadius, gunLayer);
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Pistol") || collider.CompareTag("SMG") ||
+                collider.CompareTag("AssaultRifle") || collider.CompareTag("Shotgun"))
             {
-                if (!hasGun)
+                Debug.Log("Picking up " + collider.name);
+
+                // Destroy the original gun on the ground if there is one
+                if (originalGunOnGround != null && lastPickedGunType == collider.tag)
                 {
-                    PickUpGun(collider.gameObject);
-                    break;
+                    Destroy(originalGunOnGround);
                 }
+
+                // Create an empty GameObject to represent the player's hand
+                gunHolder = new GameObject("GunHolder");
+                gunHolder.transform.position = playerHand.position;
+                gunHolder.transform.parent = playerHand;
+
+                // Instantiate the gun relative to the gunHolder
+                currentGun = Instantiate(collider.gameObject, gunHolder.transform);
+                currentGun.transform.localPosition = Vector3.zero;
+                currentGun.transform.localRotation = Quaternion.identity;
+
+                // Store the original Rigidbody2D component
+                originalRigidbody = collider.GetComponent<Rigidbody2D>();
+
+                // Disable the original gun while the gun is in the player's hand
+                collider.gameObject.SetActive(false);
+
+                // Disable the original Rigidbody2D while the gun is in the player's hand
+                if (originalRigidbody != null)
+                {
+                    originalRigidbody.simulated = false;
+                }
+
+                // Check if the instantiated gun has a Rigidbody2D and disable it
+                Rigidbody2D gunRigidbody = currentGun.GetComponent<Rigidbody2D>();
+                if (gunRigidbody != null)
+                {
+                    gunRigidbody.simulated = false;
+                }
+
+                currentGun.GetComponent<Collider2D>().enabled = false;
+
+                // Log the scale information
+                Debug.Log("Gun Scale: " + currentGun.transform.localScale);
+                Debug.Log("GunHolder Scale: " + gunHolder.transform.localScale);
+                Debug.Log("PlayerHand Scale: " + playerHand.localScale);
+
+                // Update the originalGunOnGround reference and lastPickedGunType
+                originalGunOnGround = currentGun;
+                lastPickedGunType = collider.tag;
+
+                isHoldingGun = true;
+                break;
             }
         }
-    }
-
-    void PickUpGun(GameObject gunObject)
-    {
-        // Deactivate the gun object on the floor
-        gunObject.SetActive(false);
-        pickedUpGun = gunObject;
-
-        // Remove Rigidbody component from the picked-up gun
-        Rigidbody2D rb = pickedUpGun.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            Destroy(rb);
-        }
-
-        // Drop the current gun if there is one
-        if (hasGun)
-        {
-            DropGun();
-        }
-
-        // Randomly select a gun from availableGuns array
-        Gun selectedGun = availableGuns[Random.Range(0, availableGuns.Length)];
-
-        // Instantiate the new gun prefab and set it at an offset from the player
-        currentGun = Instantiate(selectedGun.gunPrefab, transform.position + new Vector3(gunDistance, 0f, 0f), Quaternion.identity);
-        currentGun.transform.parent = transform;
-
-        // Set the boolean variable to true
-        hasGun = true;
-
-        Debug.Log("Picked up: " + selectedGun.gunName);
     }
 
     void DropGun()
     {
-        if (hasGun && currentGun != null)
+        if (currentGun != null)
         {
-            // Activate the gun object on the floor
-            pickedUpGun.transform.position = currentGun.transform.position;
-            pickedUpGun.SetActive(true);
+            Debug.Log("Dropping " + currentGun.name);
 
-            // Add Rigidbody component to the dropped gun
-            Rigidbody2D rb = pickedUpGun.AddComponent<Rigidbody2D>();
-            rb.gravityScale = 1;
+            currentGun.GetComponent<Collider2D>().enabled = true;
+            currentGun.transform.parent = null;
 
-            // Destroy the current gun and set the boolean variable to false
-            Destroy(currentGun);
+            currentGun.transform.position = playerHand.position + playerHand.right * 2f;
+            currentGun.transform.rotation = Quaternion.identity;
+
+            // Re-enable the original gun on the ground if it exists
+            if (originalGunOnGround != null)
+            {
+                originalGunOnGround.SetActive(true);
+            }
+
+            // Re-enable the original Rigidbody2D component if it exists
+            if (originalRigidbody != null)
+            {
+                originalRigidbody.simulated = true;
+            }
+
+            // Check if the instantiated gun has a Rigidbody2D and re-enable it
+            Rigidbody2D gunRigidbody = currentGun.GetComponent<Rigidbody2D>();
+            if (gunRigidbody != null)
+            {
+                gunRigidbody.simulated = true;
+            }
+
+            // Destroy the current gun if it's different from the original gun on the ground
+            if (currentGun != originalGunOnGround)
+            {
+                Destroy(currentGun);
+            }
+
             currentGun = null;
-            hasGun = false;
-        }
-        else
-        {
-            Debug.LogWarning("Trying to drop gun, but currentGun is null or hasGun is false.");
-        }
-    }
 
-    void Shoot()
-    {
-        // Implement shooting functionality based on the currentGun's properties
-        // For example: Instantiate bullets, apply force, etc.
-        Debug.Log("Bang! Bang! Damage: " + currentGun.GetComponent<Gun>().damage);
-    }
+            // Destroy the empty GameObject representing the player's hand
+            Destroy(gunHolder);
+
+            isHoldingGun = false;
+        }
     }
 }
