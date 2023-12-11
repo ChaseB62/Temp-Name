@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     private particleHandler particleHandler;
 
+    private bool right = false;
+    private bool left = false;
+
     void Start(){
         particleHandler = GetComponent<particleHandler>();
     }
@@ -50,17 +53,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(Input.GetKey(rightKey) && isGrounded){
-            rb.AddForce(transform.right * walkSpeed);
+            
+            right = true;
         } else if(Input.GetKey(rightKey) && !isGrounded)
         {
-            rb.AddForce(transform.right * airWalkSpeed);
+            
+            right = true;
+        } else {
+            right = false;
         }
 
-        if(Input.GetKey(leftKey)){
-            rb.AddForce(transform.right * (walkSpeed * -1));
+        if(Input.GetKey(leftKey) && isGrounded){
+            
+            left = true;
         } else if(Input.GetKey(leftKey) && !isGrounded)
         {
-            rb.AddForce(transform.right * (airWalkSpeed * -1));
+            left = true;
+        } else {
+            left = false;
         }
 
         if (rb.velocity.x > maxSpeed && isGrounded)
@@ -82,5 +92,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+
+    public void FixedUpdate(){
+        if(left && isGrounded){
+            rb.AddForce(transform.right * (walkSpeed * -1));
+        } else if(left && !isGrounded){
+            rb.AddForce(transform.right * (airWalkSpeed * -1));
+        }
+
+        if(right && isGrounded){
+            rb.AddForce(transform.right * walkSpeed);
+        } else if(right && !isGrounded){
+            rb.AddForce(transform.right * airWalkSpeed);
+        }
     }
 }

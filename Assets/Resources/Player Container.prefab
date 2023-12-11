@@ -920,10 +920,10 @@ MonoBehaviour:
   isMoving: 0
   groundDetector: {fileID: 4152256611795064067}
   jumpForce: 20
-  walkSpeed: 10
+  walkSpeed: 40
   maxSpeed: 15
   maxAirSpeed: 12
-  airWalkSpeed: 5
+  airWalkSpeed: 35
   rb: {fileID: 4152256612570409467}
 --- !u!61 &4152256613654673685
 BoxCollider2D:
@@ -1037,12 +1037,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a6609eac8398645bc7f6a30a0b0b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasGun: 0
-  gunPrefab: {fileID: 924779181465636565, guid: d3dd88c77df0a28448e9c91bbb25e8d8, type: 3}
-  pickupRange: 1.5
-  rotationSpeed: 5
-  gunDistance: 1
-  playerHealthScript: {fileID: 4152256613654673684}
+  playerHand: {fileID: 0}
+  gunHolder: {fileID: 0}
+  gunLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pickupRadius: 2
 --- !u!1 &5814638808249322095
 GameObject:
   m_ObjectHideFlags: 0
