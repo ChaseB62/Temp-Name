@@ -9,7 +9,7 @@ public class MultiplayerSetup : MonoBehaviour
     public PlayerMovement playerMovement;
     public GameObject camera;
 
-    public PickupManager pickupManagerScript;
+
     public string nickname;
 
     public GameObject[] objectsToEnable;
@@ -22,7 +22,6 @@ public class MultiplayerSetup : MonoBehaviour
     {
         playerMovement.enabled = true;
         camera.SetActive(true);
-        pickupManagerScript.enabled = true;
         SetObjectsActive(objectsToEnable, true);
         SetObjectsActive(objectsToDisable, false);
     }
