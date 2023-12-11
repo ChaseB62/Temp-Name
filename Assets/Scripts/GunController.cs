@@ -28,73 +28,72 @@ public class GunController : MonoBehaviour
     }
 
     void PickUpGun()
-    {
-        if (isHoldingGun)
         {
-            Debug.Log("Cannot pick up another gun while already holding one.");
-            return;
-        }
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerHand.position, pickupRadius, gunLayer);
-
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Pistol") || collider.CompareTag("SMG") ||
-                collider.CompareTag("AssaultRifle") || collider.CompareTag("Shotgun"))
+            if (isHoldingGun)
             {
-                Debug.Log("Picking up " + collider.name);
+                Debug.Log("Cannot pick up another gun while already holding one.");
+                return;
+            }
 
-                // Destroy the original gun on the ground if there is one
-                if (originalGunOnGround != null && lastPickedGunType == collider.tag)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(playerHand.position, pickupRadius, gunLayer);
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Pistol") || collider.CompareTag("SMG") ||
+                    collider.CompareTag("AssaultRifle") || collider.CompareTag("Shotgun"))
                 {
-                    Destroy(originalGunOnGround);
+                    Debug.Log("Picking up " + collider.name);
+
+                    // Destroy the original gun on the ground if there is one
+                    if (originalGunOnGround != null && lastPickedGunType == collider.tag)
+                    {
+                        Destroy(originalGunOnGround); // Destroy the original gun on the ground
+                    }
+
+                    // Create an empty GameObject to represent the player's hand
+                    gunHolder = new GameObject("GunHolder");
+                    gunHolder.transform.position = playerHand.position;
+                    gunHolder.transform.parent = playerHand;
+
+                    // Instantiate the gun relative to the gunHolder
+                    currentGun = Instantiate(collider.gameObject, gunHolder.transform);
+                    currentGun.transform.localPosition = Vector3.zero;
+                    currentGun.transform.localRotation = Quaternion.identity;
+
+                    // Store the original Rigidbody2D component
+                    originalRigidbody = collider.GetComponent<Rigidbody2D>();
+
+                    // Disable the original Rigidbody2D while the gun is in the player's hand
+                    if (originalRigidbody != null)
+                    {
+                        originalRigidbody.simulated = false;
+                    }
+
+                    // Check if the instantiated gun has a Rigidbody2D and disable it
+                    Rigidbody2D gunRigidbody = currentGun.GetComponent<Rigidbody2D>();
+                    if (gunRigidbody != null)
+                    {
+                        gunRigidbody.simulated = false;
+                    }
+
+                    currentGun.GetComponent<Collider2D>().enabled = false;
+
+                    // Log the scale information
+                    Debug.Log("Gun Scale: " + currentGun.transform.localScale);
+                    Debug.Log("GunHolder Scale: " + gunHolder.transform.localScale);
+                    Debug.Log("PlayerHand Scale: " + playerHand.localScale);
+
+                    // Update the originalGunOnGround reference and lastPickedGunType
+                    originalGunOnGround = currentGun;
+                    lastPickedGunType = collider.tag;
+
+                    isHoldingGun = true;
+                    break;
                 }
-
-                // Create an empty GameObject to represent the player's hand
-                gunHolder = new GameObject("GunHolder");
-                gunHolder.transform.position = playerHand.position;
-                gunHolder.transform.parent = playerHand;
-
-                // Instantiate the gun relative to the gunHolder
-                currentGun = Instantiate(collider.gameObject, gunHolder.transform);
-                currentGun.transform.localPosition = Vector3.zero;
-                currentGun.transform.localRotation = Quaternion.identity;
-
-                // Store the original Rigidbody2D component
-                originalRigidbody = collider.GetComponent<Rigidbody2D>();
-
-                // Disable the original gun while the gun is in the player's hand
-                collider.gameObject.SetActive(false);
-
-                // Disable the original Rigidbody2D while the gun is in the player's hand
-                if (originalRigidbody != null)
-                {
-                    originalRigidbody.simulated = false;
-                }
-
-                // Check if the instantiated gun has a Rigidbody2D and disable it
-                Rigidbody2D gunRigidbody = currentGun.GetComponent<Rigidbody2D>();
-                if (gunRigidbody != null)
-                {
-                    gunRigidbody.simulated = false;
-                }
-
-                currentGun.GetComponent<Collider2D>().enabled = false;
-
-                // Log the scale information
-                Debug.Log("Gun Scale: " + currentGun.transform.localScale);
-                Debug.Log("GunHolder Scale: " + gunHolder.transform.localScale);
-                Debug.Log("PlayerHand Scale: " + playerHand.localScale);
-
-                // Update the originalGunOnGround reference and lastPickedGunType
-                originalGunOnGround = currentGun;
-                lastPickedGunType = collider.tag;
-
-                isHoldingGun = true;
-                break;
             }
         }
-    }
+
+
 
     void DropGun()
     {
@@ -142,3 +141,4 @@ public class GunController : MonoBehaviour
         }
     }
 }
+//homer
