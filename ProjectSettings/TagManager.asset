@@ -11,6 +11,8 @@ TagManager:
   - Pistol
   - Shotgun
   - SMG
+  - Bullet
+  - Grab
   layers:
   - Default
   - TransparentFX

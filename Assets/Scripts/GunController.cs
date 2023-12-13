@@ -3,7 +3,7 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public Transform playerHand;
-    public GameObject gunHolder;
+    private GameObject gunHolder;
     public LayerMask gunLayer;
     private GameObject currentGun;
     private GameObject originalGunOnGround;
@@ -39,26 +39,22 @@ public class GunController : MonoBehaviour
 
             foreach (Collider2D collider in colliders)
             {
-                if (collider.CompareTag("Pistol") || collider.CompareTag("SMG") ||
-                    collider.CompareTag("AssaultRifle") || collider.CompareTag("Shotgun"))
+                if (collider.CompareTag("Grab"))
                 {
                     Debug.Log("Picking up " + collider.name);
 
-                    // Destroy the original gun on the ground if there is one
-                    if (originalGunOnGround != null && lastPickedGunType == collider.tag)
-                    {
-                        Destroy(originalGunOnGround); // Destroy the original gun on the ground
-                    }
+                    originalGunOnGround = collider.gameObject;
+                    currentGun = originalGunOnGround;
 
                     // Create an empty GameObject to represent the player's hand
                     gunHolder = new GameObject("GunHolder");
                     gunHolder.transform.position = playerHand.position;
                     gunHolder.transform.parent = playerHand;
 
-                    // Instantiate the gun relative to the gunHolder
-                    currentGun = Instantiate(collider.gameObject, gunHolder.transform);
-                    currentGun.transform.localPosition = Vector3.zero;
-                    currentGun.transform.localRotation = Quaternion.identity;
+                    originalGunOnGround.transform.parent = playerHand;
+
+                    originalGunOnGround.transform.localPosition = Vector3.zero;
+                    originalGunOnGround.transform.localRotation = Quaternion.identity;
 
                     // Store the original Rigidbody2D component
                     originalRigidbody = collider.GetComponent<Rigidbody2D>();
