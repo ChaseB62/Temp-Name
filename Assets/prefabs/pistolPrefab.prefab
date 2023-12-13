@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112304563013689453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0029638, y: -0.066114, z: -0.004789114}
+  m_LocalPosition: {x: 0.145, y: 0.153, z: 0}
   m_LocalScale: {x: 0.91255, y: 0.425, z: 1}
   m_Children: []
   m_Father: {fileID: 4077526678756720629}
@@ -110,9 +110,10 @@ GameObject:
   - component: {fileID: 4077526678756720629}
   - component: {fileID: 4916656081293405176}
   - component: {fileID: 8414581333357514922}
+  - component: {fileID: 4252687276025380508}
   m_Layer: 6
   m_Name: pistolPrefab
-  m_TagString: Pistol
+  m_TagString: Grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3039876938170644796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.97423, y: -20.158636, z: 0.004789114}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2266233685182735388}
@@ -147,7 +148,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.15, y: 0.22}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -188,6 +189,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4252687276025380508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3039876938170644796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 0
 --- !u!1 &7630018825546980290
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7630018825546980290}
   m_LocalRotation: {x: -0, y: -0, z: 0.70572114, w: 0.7084898}
-  m_LocalPosition: {x: -0.30069, y: -0.41825, z: -0.004789114}
+  m_LocalPosition: {x: -0.15272552, y: -0.19913569, z: 0}
   m_LocalScale: {x: 0.47207716, y: 0.3263891, z: 1}
   m_Children: []
   m_Father: {fileID: 4077526678756720629}
@@ -295,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8390632267380025335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.007271, y: -0.078006, z: -0.004789114}
+  m_LocalPosition: {x: 0.14069347, y: 0.1411083, z: 0}
   m_LocalScale: {x: 0.50038815, y: -0.09674207, z: 1}
   m_Children: []
   m_Father: {fileID: 4077526678756720629}

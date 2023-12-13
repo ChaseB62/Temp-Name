@@ -3,12 +3,13 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public Transform playerHand;
-    private GameObject gunHolder;
     public LayerMask gunLayer;
     private GameObject currentGun;
     private GameObject originalGunOnGround;
     private Rigidbody2D originalRigidbody; // Store the original Rigidbody2D
     public float pickupRadius = 2f;
+
+    public float chuckSpeed = 10f;
     private bool isHoldingGun = false;
     private string lastPickedGunType = ""; // Store the type of the last picked up gun
 
@@ -39,17 +40,13 @@ public class GunController : MonoBehaviour
 
             foreach (Collider2D collider in colliders)
             {
+                //aiden wrote the majority of this but since hes stupid and dumb he had to make a new tag for each individual gun so i got rid of that and shunned him.
                 if (collider.CompareTag("Grab"))
                 {
                     Debug.Log("Picking up " + collider.name);
 
                     originalGunOnGround = collider.gameObject;
                     currentGun = originalGunOnGround;
-
-                    // Create an empty GameObject to represent the player's hand
-                    gunHolder = new GameObject("GunHolder");
-                    gunHolder.transform.position = playerHand.position;
-                    gunHolder.transform.parent = playerHand;
 
                     originalGunOnGround.transform.parent = playerHand;
 
@@ -74,11 +71,6 @@ public class GunController : MonoBehaviour
 
                     currentGun.GetComponent<Collider2D>().enabled = false;
 
-                    // Log the scale information
-                    Debug.Log("Gun Scale: " + currentGun.transform.localScale);
-                    Debug.Log("GunHolder Scale: " + gunHolder.transform.localScale);
-                    Debug.Log("PlayerHand Scale: " + playerHand.localScale);
-
                     // Update the originalGunOnGround reference and lastPickedGunType
                     originalGunOnGround = currentGun;
                     lastPickedGunType = collider.tag;
@@ -100,8 +92,6 @@ public class GunController : MonoBehaviour
             currentGun.GetComponent<Collider2D>().enabled = true;
             currentGun.transform.parent = null;
 
-            currentGun.transform.position = playerHand.position + playerHand.right * 2f;
-            currentGun.transform.rotation = Quaternion.identity;
 
             // Re-enable the original gun on the ground if it exists
             if (originalGunOnGround != null)
@@ -120,7 +110,10 @@ public class GunController : MonoBehaviour
             if (gunRigidbody != null)
             {
                 gunRigidbody.simulated = true;
+                gunRigidbody.AddForce(currentGun.transform.forward * chuckSpeed, ForceMode2D.Impulse);
             }
+
+            
 
             // Destroy the current gun if it's different from the original gun on the ground
             if (currentGun != originalGunOnGround)
@@ -129,9 +122,6 @@ public class GunController : MonoBehaviour
             }
 
             currentGun = null;
-
-            // Destroy the empty GameObject representing the player's hand
-            Destroy(gunHolder);
 
             isHoldingGun = false;
         }

@@ -9,13 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2034089974975208474}
+  - component: {fileID: 3134310392899582314}
+  - component: {fileID: 7414202298419238859}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: GunHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2034089974975208474
 Transform:
   m_ObjectHideFlags: 0
@@ -23,13 +25,43 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866288611339236404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071063, w: 0.70710737}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4152256613654673707}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &3134310392899582314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866288611339236404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69e6c86a6d6e384eb10b18f1ca758cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotation: 90
+  maxRotation: -90
+--- !u!114 &7414202298419238859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866288611339236404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 0
 --- !u!1 &2036590633955214458
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +807,8 @@ MonoBehaviour:
   playerMovement: {fileID: 4152256612570409466}
   camera: {fileID: 4152256612281662388}
   nickname: 
-  objectsToEnable: []
+  objectsToEnable:
+  - {fileID: 1866288611339236404}
   objectsToDisable: []
   nicknameText: {fileID: 1404244137464403410}
 --- !u!1 &4152256613489260839
@@ -895,7 +928,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1052,6 +1085,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7603291014203180301}
+  - {fileID: 7414202298419238859}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1067,11 +1101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a6609eac8398645bc7f6a30a0b0b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHand: {fileID: 4152256613654673707}
+  playerHand: {fileID: 2034089974975208474}
   gunLayer:
     serializedVersion: 2
     m_Bits: 64
   pickupRadius: 2
+  chuckSpeed: 10
 --- !u!1 &5814638808249322095
 GameObject:
   m_ObjectHideFlags: 0
