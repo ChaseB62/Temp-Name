@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(Input.GetKey(rightKey) && isGrounded){
-            
+            Debug.Log("right");
             right = true;
         } else if(Input.GetKey(rightKey) && !isGrounded)
         {
@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(Input.GetKey(leftKey) && isGrounded){
-            
+            Debug.Log("left");
             left = true;
         } else if(Input.GetKey(leftKey) && !isGrounded)
         {
