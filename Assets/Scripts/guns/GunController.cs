@@ -51,7 +51,7 @@ public class GunController : MonoBehaviour
                     originalGunOnGround.transform.parent = playerHand;
 
                     originalGunOnGround.transform.localPosition = Vector3.zero;
-                    originalGunOnGround.transform.localRotation = Quaternion.identity;
+                    originalGunOnGround.transform.localEulerAngles = new Vector3(0,0,0);
 
                     // Store the original Rigidbody2D component
                     originalRigidbody = collider.GetComponent<Rigidbody2D>();
@@ -91,6 +91,7 @@ public class GunController : MonoBehaviour
 
             currentGun.GetComponent<Collider2D>().enabled = true;
             currentGun.transform.parent = null;
+            currentGun.transform.localScale = new Vector3(1f, 1f, 1f);
 
 
             // Re-enable the original gun on the ground if it exists
