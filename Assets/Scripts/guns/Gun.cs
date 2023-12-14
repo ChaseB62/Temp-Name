@@ -1,26 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Gun : MonoBehaviour
 {
-    public float weight = 10f;
-    public GameObject bullet;
+    public KeyCode shootKey;
+    public GameObject bulletObject;
+    public Transform bulletSpawn;
+    public float shootCooldown;
 
-    public Transform playerTransform;
+    private bool canShoot = true;
 
-    public float timeInBetweenShots = 1f;
-
-    public void Shoot()
+    private void Update()
     {
-        Instantiate(bullet, playerTransform.transform.position, transform.rotation);
+        if (Input.GetKey(shootKey) && canShoot)
+        {
+            Debug.Log("got key");
+            Shoot();
+        }
     }
 
-    public void Update(){
-        Vector3 mousePosition = Input.mousePosition;
+    private void Shoot()
+    {
+        Debug.Log("shot");
 
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z - Camera.main.transform.position.z));
+        // Use PhotonNetwork.Instantiate if working in a multiplayer environment
+        Instantiate(bulletObject, bulletSpawn.position, bulletSpawn.rotation);
 
-        transform.right = -(targetPosition - transform.position);
+        StartCoroutine(StartCooldown());
+    }
+
+    private IEnumerator StartCooldown()
+    {
+        Debug.Log("Start cooldown");
+        canShoot = false;
+
+        // Adding a log here to check if the coroutine is reached
+        Debug.Log("Coroutine started");
+
+        yield return new WaitForSeconds(shootCooldown);
+        
+        // Adding a log here to check if WaitForSeconds is working
+        Debug.Log("Coroutine finished waiting");
+
+        Debug.Log("end cooldown");
+        canShoot = true;
     }
 }
