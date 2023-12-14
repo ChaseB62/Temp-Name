@@ -52,6 +52,10 @@ public class GunController : MonoBehaviour
 
                     originalGunOnGround.transform.localPosition = Vector3.zero;
                     originalGunOnGround.transform.localEulerAngles = new Vector3(0,0,0);
+                    currentGun.transform.localScale = new Vector3(1f, 1f, 1f);
+
+                    Gun gun = currentGun.GetComponent<Gun>();
+                    gun.enabled = true;
 
                     // Store the original Rigidbody2D component
                     originalRigidbody = collider.GetComponent<Rigidbody2D>();
@@ -87,11 +91,15 @@ public class GunController : MonoBehaviour
     {
         if (currentGun != null)
         {
+            
             Debug.Log("Dropping " + currentGun.name);
 
             currentGun.GetComponent<Collider2D>().enabled = true;
             currentGun.transform.parent = null;
             currentGun.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            Gun gun = currentGun.GetComponent<Gun>();
+            gun.enabled = false;
 
 
             // Re-enable the original gun on the ground if it exists
