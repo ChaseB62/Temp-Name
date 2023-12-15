@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: -6237552067187001587}
   m_Layer: 6
   m_Name: AssultRiflePrefab
-  m_TagString: AssaultRifle
+  m_TagString: Grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
