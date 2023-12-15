@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class playerHealth : MonoBehaviour
 {
-    public int health = 100;
+    public Health healthScript;
+
+    public float healthPlayer = 100f;
 
     public Slider healthSlider;
 
@@ -25,17 +27,13 @@ public class playerHealth : MonoBehaviour
 
     public void Update()
     {
-        healthSlider.value = health;
-        if(health <= 0){
+        healthPlayer = healthScript.startHealth;
+        healthSlider.value = healthPlayer;
+        if(healthPlayer <= 0){
             Die();
-        } else if(health > 0){
+        } else if(healthPlayer > 0){
             Revive();
         }
-    }
-
-    public void TakeDamage(int damage){
-        health -= damage;
-        
     }
 
     public void Die()

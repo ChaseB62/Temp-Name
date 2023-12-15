@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpikeScript : MonoBehaviour
 {
     public int spikeDamage = 10;
-    public playerHealth playerHealthScript; // Reference to playerHealth script
+    public Health playerHealthScript; // Reference to playerHealth script
 
     public AudioSource hitSource;
     public AudioClip hitClip;
@@ -12,11 +12,10 @@ public class SpikeScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the colliding object is the player
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("canDamage"))
         {
             Debug.Log("collided");
-            playerHealthScript = other.GetComponent<playerHealth>();
-            // Reduce player's health directly
+            playerHealthScript = other.GetComponent<Health>();
             DecreaseHealth();
 
             hitSource.PlayOneShot(hitClip);
@@ -29,7 +28,7 @@ public class SpikeScript : MonoBehaviour
         if (playerHealthScript != null)
         {
             playerHealthScript.TakeDamage(spikeDamage);
-            Debug.Log("Player health decreased by " + spikeDamage + ". Current health: " + playerHealthScript.health);
+            Debug.Log("Player health decreased by " + spikeDamage + ". Current health: " + playerHealthScript.startHealth);
         }
         else
         {

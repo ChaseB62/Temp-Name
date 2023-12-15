@@ -890,9 +890,10 @@ GameObject:
   - component: {fileID: 133958552250514915}
   - component: {fileID: 133958552250514908}
   - component: {fileID: 133958552250514909}
+  - component: {fileID: 3327940144204313930}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: canDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1051,7 +1052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52272e71f956c345af114e0d30a5eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  healthScript: {fileID: 3327940144204313930}
+  healthPlayer: 100
   healthSlider: {fileID: 133958552041426422}
   playerMovement: {fileID: 133958552250514917}
   rb: {fileID: 133958552250514919}
@@ -1132,6 +1134,20 @@ MonoBehaviour:
     m_Bits: 64
   pickupRadius: 2
   chuckSpeed: 1000
+--- !u!114 &3327940144204313930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133958552250514911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ec1d2e9bd44ae46b3fb08e42a1bd45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 100
+  destroyOnDeath: 0
 --- !u!1 &133958552426682065
 GameObject:
   m_ObjectHideFlags: 0
