@@ -15,6 +15,7 @@ public class FanScript : MonoBehaviour
             {
                 // Apply continuous upward force to the player when they stay in the trigger
                 playerMovement.rb.AddForce(Vector2.up * continuousForce, ForceMode2D.Force);
+                
             }
         }
     }
