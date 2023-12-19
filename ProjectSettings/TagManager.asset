@@ -13,7 +13,7 @@ TagManager:
   - SMG
   - Bullet
   - Grab
-  - canDamage
+  - canEffect
   layers:
   - Default
   - TransparentFX

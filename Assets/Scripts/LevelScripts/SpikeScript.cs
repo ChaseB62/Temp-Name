@@ -12,7 +12,7 @@ public class SpikeScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the colliding object is the player
-        if (other.CompareTag("canDamage"))
+        if (other.CompareTag("canEffect"))
         {
             Debug.Log("collided");
             playerHealthScript = other.GetComponent<Health>();
