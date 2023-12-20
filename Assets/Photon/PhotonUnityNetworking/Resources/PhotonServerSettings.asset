@@ -43,6 +43,11 @@ MonoBehaviour:
   - DropGun
   - PickUpGun
   - Shoot
+<<<<<<< HEAD
+=======
+  - Die
+  - Revive
+>>>>>>> 0154992865ea967cdd839393468041cbdaabe9d7
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
