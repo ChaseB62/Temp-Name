@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1428675847021740498}
   - component: {fileID: 4575053739415082336}
   - component: {fileID: 7528940227042471694}
+  - component: {fileID: 2851028061619872555}
   m_Layer: 6
   m_Name: SMGprefab
   m_TagString: Grab
@@ -219,6 +220,29 @@ MonoBehaviour:
   bulletObject: {fileID: 5834960985422244494, guid: e5197a99a7ebdcb4283894a610db27bc, type: 3}
   bulletSpawn: {fileID: 5732398739537783108}
   shootCooldown: 0.05
+--- !u!114 &2851028061619872555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412288858561228576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 2
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 4575053739415082336}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4357901163887412151
 GameObject:
   m_ObjectHideFlags: 0

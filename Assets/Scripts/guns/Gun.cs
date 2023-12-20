@@ -15,16 +15,17 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetKey(shootKey) && canShoot)
         {
+            PhotonView photonView = PhotonView.Get(this);
             Debug.Log("got key");
-            Shoot();
+            photonView.RPC("Shoot", RpcTarget.AllBuffered);
         }
     }
 
+    [PunRPC]
     private void Shoot()
     {
         Debug.Log("shot");
 
-        // Use PhotonNetwork.Instantiate if working in a multiplayer environment
         Instantiate(bulletObject, bulletSpawn.position, bulletSpawn.rotation);
 
         StartCoroutine(StartCooldown());

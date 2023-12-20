@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class GunController : MonoBehaviour
 {
@@ -17,17 +18,20 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            PhotonView photonView = PhotonView.Get(this);
+
             if (!isHoldingGun)
             {
-                PickUpGun();
+                photonView.RPC("PickUpGun", RpcTarget.AllBuffered);
             }
             else
             {
-                DropGun();
+                photonView.RPC("DropGun", RpcTarget.AllBuffered);
             }
         }
     }
 
+    [PunRPC]
     void PickUpGun()
         {
             if (isHoldingGun)
@@ -86,7 +90,7 @@ public class GunController : MonoBehaviour
         }
 
 
-
+    [PunRPC]
     void DropGun()
     {
         if (currentGun != null)

@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 7893213077803276871}
   - component: {fileID: 7025915293115962724}
   - component: {fileID: 3586044744938072076}
+  - component: {fileID: 567037207264145635}
   m_Layer: 6
   m_Name: shutGunPrefab
   m_TagString: Grab
@@ -380,6 +381,29 @@ MonoBehaviour:
   bulletObject: {fileID: 5834960985422244494, guid: 12ad85308a112f944a17cd5934823787, type: 3}
   bulletSpawn: {fileID: 2745062772555309979}
   shootCooldown: 1
+--- !u!114 &567037207264145635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307955723300476377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 2
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7025915293115962724}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &3785002868337824164
 GameObject:
   m_ObjectHideFlags: 0

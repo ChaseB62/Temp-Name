@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 5858007143039652480}
   - component: {fileID: 3285168315520683232}
   - component: {fileID: -6237552067187001587}
+  - component: {fileID: 1036787916428635249}
   m_Layer: 6
   m_Name: AssultRiflePrefab
   m_TagString: Grab
@@ -468,6 +469,29 @@ MonoBehaviour:
   bulletObject: {fileID: 5834960985422244494, guid: e5197a99a7ebdcb4283894a610db27bc, type: 3}
   bulletSpawn: {fileID: 6305649655078678440}
   shootCooldown: 0.1
+--- !u!114 &1036787916428635249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739301715480225847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 2
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 3285168315520683232}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1925268500595788284
 GameObject:
   m_ObjectHideFlags: 0
