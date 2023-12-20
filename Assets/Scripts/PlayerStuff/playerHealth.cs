@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class playerHealth : MonoBehaviour
 {
@@ -27,15 +28,18 @@ public class playerHealth : MonoBehaviour
 
     public void Update()
     {
+        PhotonView photonView = PhotonView.Get(this);
+
         healthPlayer = healthScript.startHealth;
         healthSlider.value = healthPlayer;
         if(healthPlayer <= 0){
-            Die();
+            photonView.RPC("Die", RpcTarget.AllBuffered);
         } else if(healthPlayer > 0){
-            Revive();
+            photonView.RPC("Revive", RpcTarget.AllBuffered);
         }
     }
 
+    [PunRPC]
     public void Die()
     {
         playerMovement.enabled = false;
@@ -50,7 +54,7 @@ public class playerHealth : MonoBehaviour
         }
         isDead = true;
     }
-
+    [PunRPC]
     public void Revive(){
         playerMovement.enabled = true;
         isDead = false;

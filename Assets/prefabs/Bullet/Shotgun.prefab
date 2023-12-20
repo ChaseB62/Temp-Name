@@ -9741,7 +9741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 8466808680057109277}
-  hitTag: canDamage
+  hitTag: canEffect
   bulletDamage: 7.5
 --- !u!1001 &7920703189575775714
 PrefabInstance:

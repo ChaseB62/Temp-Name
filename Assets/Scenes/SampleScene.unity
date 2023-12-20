@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1036787916428635249, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1739301715480225847, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
       propertyPath: m_Name
       value: AssultRiflePrefab (2)
@@ -770,6 +774,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1036787916428635249, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1739301715480225847, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
       propertyPath: m_Name
       value: AssultRiflePrefab (1)
@@ -842,6 +850,10 @@ PrefabInstance:
     - target: {fileID: 993470623825823759, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
       propertyPath: m_TagString
       value: Grab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036787916428635249, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
+      propertyPath: sceneViewId
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1490297202271162545, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
       propertyPath: m_TagString
@@ -1090,6 +1102,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4131078775423060016, guid: 05ec3833017ef5140bd00c6bcf811117, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ec3833017ef5140bd00c6bcf811117, type: 3}
 --- !u!1001 &1046632058
@@ -1159,6 +1175,10 @@ PrefabInstance:
     - target: {fileID: 2412288858561228576, guid: 3e4ebc519c118e04bac2305bd2c8e73c, type: 3}
       propertyPath: m_Name
       value: SMGprefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851028061619872555, guid: 3e4ebc519c118e04bac2305bd2c8e73c, type: 3}
+      propertyPath: sceneViewId
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3046412045969082415, guid: 3e4ebc519c118e04bac2305bd2c8e73c, type: 3}
       propertyPath: m_RootOrder
@@ -1905,6 +1925,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 567037207264145635, guid: 02993afb6b1f2e64eb442d005f544a31, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3307955723300476377, guid: 02993afb6b1f2e64eb442d005f544a31, type: 3}
       propertyPath: m_Name
       value: shutGunPrefab
@@ -2281,6 +2305,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1036787916428635249, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1739301715480225847, guid: c48724e9a462e144aa39d301cad7dd10, type: 3}
       propertyPath: m_Name
       value: AssultRiflePrefab (3)
