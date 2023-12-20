@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isMoving;
 
     public Collider2D groundDetector;
+    public Collider2D wallJump1;
+    public Collider2D wallJump2;
 
     public float jumpForce = 100f;
     public float walkSpeed = 10f;
@@ -37,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(groundDetector.IsTouchingLayers(ground)){
+        if(groundDetector.IsTouchingLayers(ground) || wallJump1.IsTouchingLayers(ground) || wallJump2.IsTouchingLayers(ground)){
             isGrounded = true;
             Debug.Log("touching ground");
         } else {
