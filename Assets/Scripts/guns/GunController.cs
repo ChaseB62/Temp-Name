@@ -14,6 +14,12 @@ public class GunController : MonoBehaviour
     private bool isHoldingGun = false;
     private string lastPickedGunType = ""; // Store the type of the last picked up gun
 
+    private bool isLocalPlayer;
+
+    public void IsLocalPlayer(){
+        isLocalPlayer = true;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -50,16 +56,22 @@ public class GunController : MonoBehaviour
                     Debug.Log("Picking up " + collider.name);
 
                     originalGunOnGround = collider.gameObject;
-                    currentGun = originalGunOnGround;
+                    
 
-                    originalGunOnGround.transform.parent = playerHand;
+                    if(isLocalPlayer){
+                        Gun gun = currentGun.GetComponent<Gun>();
+                        gun.enabled = true;
 
-                    originalGunOnGround.transform.localPosition = Vector3.zero;
-                    originalGunOnGround.transform.localEulerAngles = new Vector3(0,0,0);
-                    currentGun.transform.localScale = new Vector3(1f, 1f, 1f);
+                        currentGun = originalGunOnGround;
 
-                    Gun gun = currentGun.GetComponent<Gun>();
-                    gun.enabled = true;
+                        originalGunOnGround.transform.parent = playerHand;
+
+                        originalGunOnGround.transform.localPosition = Vector3.zero;
+                        originalGunOnGround.transform.localEulerAngles = new Vector3(0,0,0);
+                        currentGun.transform.localScale = new Vector3(1f, 1f, 1f);
+                    }
+
+                   
 
                     // Store the original Rigidbody2D component
                     originalRigidbody = collider.GetComponent<Rigidbody2D>();
@@ -101,9 +113,11 @@ public class GunController : MonoBehaviour
             currentGun.GetComponent<Collider2D>().enabled = true;
             currentGun.transform.parent = null;
             currentGun.transform.localScale = new Vector3(1f, 1f, 1f);
-
-            Gun gun = currentGun.GetComponent<Gun>();
-            gun.enabled = false;
+            
+            if(isLocalPlayer){
+                Gun gun = currentGun.GetComponent<Gun>();
+                gun.enabled = false;
+            }
 
 
             // Re-enable the original gun on the ground if it exists
