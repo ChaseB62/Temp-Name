@@ -37,17 +37,14 @@ MonoBehaviour:
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - SetNickname
-  - DropGun
-  - PickUpGun
-  - Shoot
-<<<<<<< HEAD
-=======
   - Die
+  - DropGun
+  - Fire
+  - PickUpGun
+  - RespawnSpaceship
   - Revive
->>>>>>> 0154992865ea967cdd839393468041cbdaabe9d7
+  - SetNickname
+  - Shoot
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
