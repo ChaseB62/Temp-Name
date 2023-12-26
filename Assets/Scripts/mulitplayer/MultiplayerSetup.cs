@@ -8,7 +8,7 @@ public class MultiplayerSetup : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public GameObject camera;
-    public GunController gunController;
+    //public GunController gunController;
 
 
     public string nickname;
@@ -22,7 +22,7 @@ public class MultiplayerSetup : MonoBehaviour
     public void IsLocalPlayer()
     {
         playerMovement.enabled = true;
-        gunController.enabled = true;
+        //gunController.enabled = true;
         camera.SetActive(true);
         SetObjectsActive(objectsToEnable, true);
         SetObjectsActive(objectsToDisable, false);
